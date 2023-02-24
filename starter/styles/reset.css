@@ -39,5 +39,8 @@
 	border: 1px solid #282828;
 	border-radius: 5px;
 	padding: 10px;
+}
+
+.hideBox {
 	display: none;
 }

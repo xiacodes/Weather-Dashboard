@@ -13,7 +13,6 @@ var apiKey = "6a5e21ce19fc0952eac333669721b7de";
 searchBtn.on("click", function (event) {
 	event.preventDefault();
 	var city = searchInput.val();
-	todayForecast.style.display = "block";
 	weatherLoad(city);
 });
 
@@ -32,6 +31,7 @@ function weatherLoad(city) {
 
 			//Load up the individual city
 			weatherReport(response, 1);
+			todayForecast.removeClass(`hideBox`);
 			weatherReport(response, 2);
 		});
 	}
