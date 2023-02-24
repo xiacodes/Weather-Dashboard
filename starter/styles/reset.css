@@ -1,7 +1,9 @@
 .input-group {
 	display: flex;
 	flex-direction: column;
-	gap: 7px;
+	gap: 10px;
+	margin-top: 10px;
+	width: 100% !important;
 }
 #search-input,
 #search-button {
@@ -10,11 +12,11 @@
 }
 
 #search-input {
-	padding: 7px 5px;
+	padding: 10px 5px;
 }
 
 #search-button {
-	padding: 0;
+	padding: 4px 0;
 }
 .input-group-append {
 	display: flex;
@@ -23,4 +25,12 @@
 .weather-hr {
 	border: 2px solid #ccc;
 	width: 97%;
+}
+
+#header {
+	background: rgb(27, 165, 255);
+	background: linear-gradient(90deg, rgba(27, 165, 255, 1) 0%, rgba(50, 0, 103, 1) 100%) !important;
+}
+#header > h1 {
+	font-weight: 700;
 }
