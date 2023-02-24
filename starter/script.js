@@ -3,6 +3,7 @@ var searchInput = $("#search-input");
 var searchBtn = $(`#search-button`);
 var fiveDayForecast = $(`#forecast`);
 var todayForecast = $(`#today`);
+var historyContainer = $(`#history`);
 
 // API Information
 var apiKey = "6a5e21ce19fc0952eac333669721b7de";
@@ -122,11 +123,25 @@ function storingCity(city) {
 	saveCityLocally();
 
 	// Render the updated list of cities to the DOM
-	renderCities();
+	createCityButtons();
 }
 
 function saveCityLocally() {
 	// Serialize the cities array to a JSON string and store it in LocalStorage
-	const serializedCities = JSON.stringify(historyCitiesList);
+	var serializedCities = JSON.stringify(historyCitiesList);
+	alert(serializedCities);
 	localStorage.setItem("cities", serializedCities);
+}
+function createCityButtons() {
+	// Retrieve the serialized cities string from LocalStorage and parse it into an array
+	var citiesArray = JSON.parse(localStorage.getItem("cities")) || [];
+
+	// Render a new button for each city in the savedCities array
+	historyContainer.empty();
+
+	for (var index = 0; index < citiesArray.length; index++) {
+		var city = citiesArray[index].name;
+		var historyButton = $("<button>").addClass("btn btn-small").attr("id", city.name).text(city);
+		historyContainer.prepend(historyButton);
+	}
 }
