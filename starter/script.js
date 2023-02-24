@@ -29,7 +29,7 @@ function weatherLoad(city) {
 
 			//Load up the individual city
 			weatherReport(response, 1);
-			fiveDayWeatherReport(response);
+			weatherReport(response, 2);
 		});
 	}
 }
@@ -56,5 +56,17 @@ function weatherReport(response, option) {
 		var latitude = response.coord.lat;
 		var longitude = response.coord.lon;
 		var query = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey + "&units=metric";
+
+		$.ajax({
+			url: query,
+			method: "GET",
+		}).then(function (response) {
+			var fiveForecast = response.list;
+			var dateToday = moment().format("DD/MM/YYYY");
+			var row = $(`<div>`).addClass(`row`);
+			var fiveDayForecastTitle = $(`<h2>`);
+			fiveDayForecastTitle.text() = "5-Day Forecast:";
+			fiveDayForecast.append(fiveDayForecastTitle);
+		});
 	}
 }
