@@ -44,3 +44,20 @@
 .hideBox {
 	display: none;
 }
+
+#myCol {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: space-between;
+}
+
+.card {
+	width: 100%;
+	background-color: #2d3e50 !important;
+	color: #fff !important;
+}
+.card-title {
+	font-weight: 700;
+	font-size: 1.2rem;
+}

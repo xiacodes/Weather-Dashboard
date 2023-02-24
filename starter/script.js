@@ -66,7 +66,7 @@ function weatherReport(response, option) {
 		}).then(function (response) {
 			var fiveForecastList = response.list;
 			var dateToday = moment().format("DD/MM/YYYY");
-			var row = $(`<div>`).addClass(`row`);
+			var row = $(`<div>`).attr("id", "myCol").addClass(`col`);
 			var fiveDayForecastTitle = $(`<h4>`).text("5-Day Forecast:");
 			fiveDayForecast.append(fiveDayForecastTitle);
 
