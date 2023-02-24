@@ -37,7 +37,7 @@ function weatherLoad(city) {
 			weatherReport(response, 2);
 
 			//Storing the city name
-			storingCity(cityInfo);
+			storingCity(cityInfo.name);
 		});
 	}
 }
@@ -109,6 +109,8 @@ function weatherReport(response, option) {
 		});
 	}
 }
+
+// Storing function! -- NOT WORKING
 function storingCity(city) {
 	// Check if the city name entered has already been saved
 	if (cities.some((item) => item.name.toLowerCase() === city.toLowerCase())) {
@@ -120,15 +122,15 @@ function storingCity(city) {
 	historyCitiesList.push(city);
 
 	// Store the updated cities array
-	saveCityLocally();
+	saveCityLocally(historyCitiesList);
 
 	// Render the updated list of cities to the DOM
 	createCityButtons();
 }
 
-function saveCityLocally() {
+function saveCityLocally(list) {
 	// Serialize the cities array to a JSON string and store it in LocalStorage
-	var serializedCities = JSON.stringify(historyCitiesList);
+	var serializedCities = JSON.stringify(list);
 	alert(serializedCities);
 	localStorage.setItem("cities", serializedCities);
 }
