@@ -24,7 +24,7 @@
 }
 .weather-hr {
 	border: 2px solid #ccc;
-	width: 97%;
+	width: 100%;
 }
 
 #header {
@@ -33,4 +33,11 @@
 }
 #header > h1 {
 	font-weight: 700;
+}
+
+#today {
+	border: 1px solid #282828;
+	border-radius: 5px;
+	padding: 10px;
+	display: none;
 }

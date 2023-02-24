@@ -7,10 +7,13 @@ var todayForecast = $(`#today`);
 // API Information
 var apiKey = "6a5e21ce19fc0952eac333669721b7de";
 
+//Resets
+
 // ------------------------------------------- //
 searchBtn.on("click", function (event) {
 	event.preventDefault();
 	var city = searchInput.val();
+	todayForecast.style.display = "block";
 	weatherLoad(city);
 });
 
@@ -61,12 +64,23 @@ function weatherReport(response, option) {
 			url: query,
 			method: "GET",
 		}).then(function (response) {
-			var fiveForecast = response.list;
+			var fiveForecastList = response.list;
 			var dateToday = moment().format("DD/MM/YYYY");
 			var row = $(`<div>`).addClass(`row`);
-			var fiveDayForecastTitle = $(`<h2>`);
-			fiveDayForecastTitle.text() = "5-Day Forecast:";
+			var fiveDayForecastTitle = $(`<h4>`).text("5-Day Forecast:");
 			fiveDayForecast.append(fiveDayForecastTitle);
+
+			// Creating the cards for each day
+			for (let index = 0; index < fiveForecastList.length; index++) {
+				var weatherImage = fiveForecastList[index].weather[0].icon;
+				var weatherDate = moment.unix(fiveForecastList[index].dt).format("DD/MM/YYYY");
+				// If the day found is not today's date
+				if (weatherDate !== dateToday) {
+					var card = $(`<div>`).addClass(`card`);
+					var cardBody = $(`<div>`).addClass(`card-body`);
+					var h5 = $(`<div>`).addClass(`card-title`).text(dateToday);
+				}
+			}
 		});
 	}
 }
