@@ -74,11 +74,31 @@ function weatherReport(response, option) {
 			for (let index = 0; index < fiveForecastList.length; index++) {
 				var weatherImage = fiveForecastList[index].weather[0].icon;
 				var weatherDate = moment.unix(fiveForecastList[index].dt).format("DD/MM/YYYY");
+
 				// If the day found is not today's date
 				if (weatherDate !== dateToday) {
+					// Copying card structure from Bootstrap 4.3
 					var card = $(`<div>`).addClass(`card`);
 					var cardBody = $(`<div>`).addClass(`card-body`);
 					var h5 = $(`<div>`).addClass(`card-title`).text(dateToday);
+					var img = $(`<img>`).attr("src", `http://openweathermap.org/img/wn/` + weatherImage + `.png`);
+
+					// Added the weather information
+					var cardTextWrapper = $(`<div>`).addClass(`card-text`);
+					var temp = $(`<p>`).text(`Temp: ${fiveForecastList[index].main.temp} °C`);
+					var wind = $("<p>").text(`Wind: ${fiveForecastList[index].wind.speed} KPH`);
+					var humid = $("<p>").text(`Humidity: ${fiveForecastList[index].main.humidity}%`);
+
+					// Adding the <p> elements to the cardTextWrapper
+					cardTextWrapper.append(temp, wind, humid);
+
+					//Creating the main card body
+					cardBody.append(h5, img, cardTextWrapper);
+
+					//Creating the last card parts
+					card.append(cardBody);
+					row.append(card);
+					fiveDayForecast.empty().append(row);
 				}
 			}
 		});
