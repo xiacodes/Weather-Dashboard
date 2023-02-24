@@ -34,6 +34,9 @@ function weatherLoad(city) {
 			weatherReport(response, 1);
 			todayForecast.removeClass(`hideBox`);
 			weatherReport(response, 2);
+
+			//Storing the city name
+			storingCity(cityInfo);
 		});
 	}
 }
@@ -104,4 +107,26 @@ function weatherReport(response, option) {
 			}
 		});
 	}
+}
+function storingCity(city) {
+	// Check if the city name entered has already been saved
+	if (cities.some((item) => item.name.toLowerCase() === city.toLowerCase())) {
+		// Exit the function early if the city already exists
+		return;
+	}
+
+	// Add the new city object to the cities array
+	historyCitiesList.push(city);
+
+	// Store the updated cities array
+	saveCityLocally();
+
+	// Render the updated list of cities to the DOM
+	renderCities();
+}
+
+function saveCityLocally() {
+	// Serialize the cities array to a JSON string and store it in LocalStorage
+	const serializedCities = JSON.stringify(historyCitiesList);
+	localStorage.setItem("cities", serializedCities);
 }
