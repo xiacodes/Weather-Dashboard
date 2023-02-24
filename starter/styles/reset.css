@@ -1,7 +1,7 @@
 .input-group {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 1em;
 	margin-top: 10px;
 	width: 100% !important;
 }
@@ -30,6 +30,7 @@
 #header {
 	background: rgb(27, 165, 255);
 	background: linear-gradient(90deg, rgba(27, 165, 255, 1) 0%, rgba(50, 0, 103, 1) 100%) !important;
+	margin-bottom: 20px;
 }
 #header > h1 {
 	font-weight: 700;

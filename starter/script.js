@@ -7,7 +7,8 @@ var todayForecast = $(`#today`);
 // API Information
 var apiKey = "6a5e21ce19fc0952eac333669721b7de";
 
-//Resets
+//Storing cities in an array
+var historyCitiesList = [];
 
 // ------------------------------------------- //
 searchBtn.on("click", function (event) {
@@ -36,7 +37,6 @@ function weatherLoad(city) {
 		});
 	}
 }
-
 function weatherReport(response, option) {
 	if (option === 1) {
 		const fullDate = moment.unix(response.dt).format("DD/MM/YYYY");
