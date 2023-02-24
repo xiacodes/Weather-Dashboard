@@ -73,14 +73,15 @@ function weatherReport(response, option) {
 			// Creating the cards for each day
 			for (let index = 0; index < fiveForecastList.length; index++) {
 				var weatherImage = fiveForecastList[index].weather[0].icon;
+				var weatherTime = parseInt(moment.unix(fiveForecastList[index].dt).format("H"));
 				var weatherDate = moment.unix(fiveForecastList[index].dt).format("DD/MM/YYYY");
 
 				// If the day found is not today's date
-				if (weatherDate !== dateToday) {
+				if (weatherTime == 12 && weatherDate !== dateToday) {
 					// Copying card structure from Bootstrap 4.3
 					var card = $(`<div>`).addClass(`card`);
 					var cardBody = $(`<div>`).addClass(`card-body`);
-					var h5 = $(`<div>`).addClass(`card-title`).text(dateToday);
+					var h5 = $(`<div>`).addClass(`card-title`).text(weatherDate);
 					var img = $(`<img>`).attr("src", `http://openweathermap.org/img/wn/` + weatherImage + `.png`);
 
 					// Added the weather information
